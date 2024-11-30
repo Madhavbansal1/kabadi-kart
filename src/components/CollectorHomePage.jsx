@@ -66,6 +66,42 @@ const CollectorDashboard = () => {
       alert("Failed to accept the request. Please try again.");
     }
   };
+  const handleCompleteRequest = async (requestId) => {
+    console.log("handle complete"+requestId);
+    setIsCompleting(true);
+    try {
+      const token = localStorage.getItem("authToken");
+      console.log("handel complete" + token)
+      if (!token) {
+        console.error("No auth token found in localStorage");
+        return;
+      }
+
+      await axios.patch(
+        `http://localhost:4000/pickup-requests/${requestId}/complete`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setPickupRequests((prevRequests) =>
+        prevRequests.map((request) =>
+          request._id === requestId ? { ...request, status: "completed" } : request
+        )
+      );
+
+      alert("Pickup request marked as completed.");
+      navigate(0);
+    } catch (err) {
+      console.error("Error completing pickup request:", err);
+      alert("Failed to mark the request as completed.");
+    } finally {
+      setIsCompleting(false);
+    }
+  };
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -164,7 +200,7 @@ const CollectorDashboard = () => {
                   {/* Mark as Completed Button */}
                   <button
                     className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    onClick={() => alert("Feature to mark as completed coming soon!")}
+                    onClick={() => handleCompleteRequest(request._id)}
                   >
                     Mark as Completed
                   </button>
