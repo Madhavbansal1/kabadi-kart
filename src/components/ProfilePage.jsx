@@ -165,12 +165,10 @@ const ProfilePage = () => {
             <Link to="/profile" className="hover:text-green-300">
               Profile
             </Link>
-            <Link
-              to="/logout"
-              className="bg-white text-green-600 px-4 py-2 rounded-lg shadow hover:bg-green-100"
-            >
-              Logout
-            </Link>
+            <button onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }} className="bg-white text-green-600 px-4 py-2 rounded hover:bg-green-100">Logout</button>
           </nav>
         </div>
       </header>
