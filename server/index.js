@@ -12,10 +12,10 @@ const collectorRoute = require("./routes/collectorRoute");
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app); // Create HTTP server for Socket.io
+const server = http.createServer(app); 
 const io = SocketIo(server, {
   cors: {
-    origin: 'http://localhost:5173/', // Update this with allowed origins in production
+    origin: 'http://localhost:5173/', 
     methods: ["GET", "POST", "PATCH", "DELETE"],
   },
 });

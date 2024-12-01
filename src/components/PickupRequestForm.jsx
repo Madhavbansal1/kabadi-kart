@@ -112,7 +112,10 @@ const PickupRequestForm = () => {
             <Link to="/pricing" className="mr-4">Pricing</Link>
             <Link to="/about" className="mr-4">About</Link>
             <Link to="/profile" className="mr-4">Profile</Link>
-            <Link to="/logout" className="bg-white text-green-600 px-4 py-2 rounded">Logout</Link>
+            <button onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }} className="bg-white text-green-600 px-4 py-2 rounded hover:bg-green-100">Logout</button>
           </nav>
         </div>
       </header>

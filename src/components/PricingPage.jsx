@@ -55,7 +55,10 @@ const PricingPage = () => {
             <Link to="/pricing" className="text-white hover:text-green-200">Pricing</Link>
             <Link to="/about" className="text-white hover:text-green-200">About</Link>
             <Link to="/profile" className="text-white hover:text-green-200">Profile</Link>
-            <Link to="/logout" className="bg-white text-green-600 px-4 py-2 rounded hover:bg-green-100">Logout</Link>
+            <button onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }} className="bg-white text-green-600 px-4 py-2 rounded hover:bg-green-100">Logout</button>
           </nav>
         </div>
       </header>
