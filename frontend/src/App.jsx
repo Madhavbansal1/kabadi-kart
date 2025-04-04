@@ -15,6 +15,7 @@ import CollectorDashboard from './components/CollectorHomePage';
 const App = () => {
   // Check if user is authenticated by verifying if token is in localStorage
   const isAuthenticated = localStorage.getItem('authToken');
+  
   console.log(isAuthenticated);
   
 
